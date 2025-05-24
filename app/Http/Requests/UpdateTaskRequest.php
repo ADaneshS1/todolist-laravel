@@ -29,8 +29,8 @@ class UpdateTaskRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'task.required' => 'Task Harus diisi',
-            'task.max' => 'Task maksimal 225 karakter'
+            'task.required' => 'Task must be filled',
+            'task.max' => 'Maximal 225 characters'
         ];
         
     }

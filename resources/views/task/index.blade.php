@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Task List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
             padding: 0;
         }
 
-       .header-container {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -25,10 +25,15 @@
         .header-container h1, .header-container h4 {
             margin: 0;
         }
-        .button-container {
+
+        .navbar-buttons {
             width: 80%;
             margin: 20px auto;
-            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .add-button {
@@ -43,6 +48,25 @@
 
         .add-button:hover {
             background-color: #45a049;
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .logout-button {
+            background-color: #e3342f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #cc1f1a;
         }
 
         table {
@@ -87,17 +111,15 @@
         <h4>Welcome, {{ Auth::user()->name }}</h4>
     </div>
 
-    <div class="button-container">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="btn btn-danger">
-                Logout
-            </button>
-        </form>     
-
+    <div class="navbar-buttons">
         <a href="/create-tasks" class="add-button">+ Create New Task</a>
         <a href="/tasks/done" class="add-button">Finished Tasks</a>
         <a href="/tasks/undone" class="add-button">Unfinished Tasks</a>
+
+        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+            @csrf
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </div>
 
     <table>
@@ -111,7 +133,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( $tasks as $task )
+            @foreach ($tasks as $task)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $task->user->name }}</td>
@@ -139,6 +161,5 @@
             });
         </script>
     @endif
-
 </body>
 </html>

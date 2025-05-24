@@ -86,7 +86,6 @@
 
     <label for="user_id">User</label>
     <select name="user_id" id="user_id" required>
-        <option value="">-- Select User Name --</option>
         @foreach ($users as $user)
             <option value="{{ $user->id }}" {{ old('user_id', $task->user_id) == $user->id ? 'selected' : '' }}>
                 {{ $user->name }}
@@ -105,7 +104,6 @@
 
     <label for="is_completed">Task Status?</label>
     <select name="is_completed" id="is_completed" required>
-        <option value="">-- Select Status --</option>
         <option value="0" {{ old('is_completed', $task->is_completed) == 0 ? 'selected' : '' }}>Unfinished</option>
         <option value="1" {{ old('is_completed', $task->is_completed) == 1 ? 'selected' : '' }}>Finished</option>
     </select>
